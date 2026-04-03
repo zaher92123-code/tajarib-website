@@ -590,4 +590,14 @@ document.querySelectorAll("a[href^='#']").forEach(a => {
   })
 })
 
-// ─── M
+// ─── MAIN LOOP ───
+function frame() {
+  updateScroll()
+  drawStars()
+  drawGlow()
+  requestAnimationFrame(frame)
+}
+frame()
+</script>
+</body>
+</html>
