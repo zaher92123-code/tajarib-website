@@ -447,8 +447,10 @@ footer a:hover{color:var(--tL)}
 
 // ─── PRELOADER ───
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('pre').classList.add('gone'), 2000)
+  setTimeout(() => document.getElementById('pre').classList.add('gone'), 1200)
 })
+// Fallback — never stay stuck on preloader
+setTimeout(() => { const p = document.getElementById('pre'); if (p) p.classList.add('gone') }, 3500)
 
 // ─── STAR CANVAS ───
 const SC = document.getElementById('stars')
