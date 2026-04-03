@@ -52,7 +52,7 @@ a{color:var(--tL);text-decoration:none}
 
 /* Moon */
 .moon{position:absolute;top:6%;right:12%;z-index:1}
-.moon-body{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe6,#f5e6b8 50%,#d4a76a);box-shadow:0 0 60px rgba(212,167,106,.3),0 0 120px rgba(212,167,106,.1)}
+.moon-body{width:80px;height:80px;position:relative;filter:drop-shadow(0 0 60px rgba(212,167,106,.3)) drop-shadow(0 0 120px rgba(212,167,106,.1))}
 .moon-ring{position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(212,167,106,.08);animation:moonRing 8s ease-in-out infinite}
 .moon-ring2{position:absolute;inset:-45px;border-radius:50%;border:1px solid rgba(212,167,106,.04);animation:moonRing 12s ease-in-out infinite reverse}
 .moon-glow{position:absolute;inset:-80px;border-radius:50%;background:radial-gradient(circle,rgba(212,167,106,.06),transparent 70%)}
@@ -185,7 +185,7 @@ footer a:hover{color:var(--tL)}
     <div class="moon-glow"></div>
     <div class="moon-ring2"></div>
     <div class="moon-ring"></div>
-    <div class="moon-body"></div>
+    <div class="moon-body" id="moonBody"></div>
   </div>
 
   <div id="ocean">
@@ -370,14 +370,60 @@ footer a:hover{color:var(--tL)}
 <footer>
   <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
-    <a href="mailto:hello@tajarib.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#3058555c5c5f7044515a514259521e514040">Contact</a>
   </div>
   <p>Tajarib · تجارب · Sultanate of Oman</p>
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.12)">Heritage data courtesy of the Ministry of Heritage & Tourism</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ─── REAL MOON PHASE ───
+;(function renderMoon() {
+  const known = new Date('2025-01-29T12:36:00Z')
+  const days = (Date.now() - known.getTime()) / 86400000
+  const phase = (days % 29.53059) / 29.53059
+  const illum = (1 - Math.cos(2 * Math.PI * phase)) / 2
+  const waxing = phase < 0.5
+
+  const el = document.getElementById('moonBody')
+  if (!el) return
+  const size = el.offsetWidth || 80
+  const cx = size / 2, cy = size / 2, r = size / 2 - 2
+
+  let shadowPath = ''
+  if (phase < 0.03 || phase > 0.97) {
+    // New moon — full shadow
+    shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 1 ${cx} ${cy+r}A${r} ${r} 0 0 1 ${cx} ${cy-r}`
+  } else if (phase > 0.47 && phase < 0.53) {
+    // Full moon — no shadow
+    shadowPath = ''
+  } else {
+    const tr = r * Math.abs(2 * illum - 1)
+    const gib = illum > 0.5
+    if (waxing) {
+      const sw = gib ? 1 : 0
+      shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 0 ${cx} ${cy+r}A${tr} ${r} 0 0 ${sw} ${cx} ${cy-r}`
+    } else {
+      const sw = gib ? 1 : 0
+      shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 1 ${cx} ${cy+r}A${tr} ${r} 0 0 ${sw} ${cx} ${cy-r}`
+    }
+  }
+
+  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="moonGrad" cx="35%" cy="35%">
+        <stop offset="0%" stop-color="#fffbe6"/>
+        <stop offset="50%" stop-color="#f5e6b8"/>
+        <stop offset="100%" stop-color="#d4a76a"/>
+      </radialGradient>
+      <clipPath id="moonClipW"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
+    </defs>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#moonGrad)"/>
+    ${shadowPath ? `<path d="${shadowPath}" fill="#081626" opacity=".92" clip-path="url(#moonClipW)"/>` : ''}
+  </svg>`
+})()
+
 // ─── PRELOADER ───
 window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('pre').classList.add('gone'), 2000)
@@ -527,14 +573,4 @@ document.querySelectorAll("a[href^='#']").forEach(a => {
   })
 })
 
-// ─── MAIN LOOP ───
-function frame() {
-  updateScroll()
-  drawStars()
-  drawGlow()
-  requestAnimationFrame(frame)
-}
-frame()
-</script>
-</body>
-</html>
+// ─── M
