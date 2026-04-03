@@ -391,15 +391,16 @@ footer a:hover{color:var(--tL)}
 <footer>
   <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
-    <a href="/cdn-cgi/l/email-protection#3058555c5c5f7044515a514259521e514040">Contact</a>
+    <a href="mailto:hello@tajarib.app">Contact</a>
   </div>
   <p>Tajarib · تجارب · Sultanate of Oman</p>
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.12)">Heritage data courtesy of the Ministry of Heritage & Tourism</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ─── REAL MOON PHASE ───
+try {
 ;(function renderMoon() {
   const known = new Date('2025-01-29T12:36:00Z')
   const days = (Date.now() - known.getTime()) / 86400000
@@ -414,36 +415,29 @@ footer a:hover{color:var(--tL)}
 
   let shadowPath = ''
   if (phase < 0.03 || phase > 0.97) {
-    // New moon — full shadow
-    shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 1 ${cx} ${cy+r}A${r} ${r} 0 0 1 ${cx} ${cy-r}`
+    shadowPath = 'M'+(cx)+' '+(cy-r)+'A'+r+' '+r+' 0 0 1 '+(cx)+' '+(cy+r)+'A'+r+' '+r+' 0 0 1 '+(cx)+' '+(cy-r)
   } else if (phase > 0.47 && phase < 0.53) {
-    // Full moon — no shadow
     shadowPath = ''
   } else {
-    const tr = r * Math.abs(2 * illum - 1)
-    const gib = illum > 0.5
+    var tr = r * Math.abs(2 * illum - 1)
+    var gib = illum > 0.5
     if (waxing) {
-      const sw = gib ? 1 : 0
-      shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 0 ${cx} ${cy+r}A${tr} ${r} 0 0 ${sw} ${cx} ${cy-r}`
+      var sw2 = gib ? 1 : 0
+      shadowPath = 'M'+cx+' '+(cy-r)+'A'+r+' '+r+' 0 0 0 '+cx+' '+(cy+r)+'A'+tr+' '+r+' 0 0 '+sw2+' '+cx+' '+(cy-r)
     } else {
-      const sw = gib ? 1 : 0
-      shadowPath = `M${cx} ${cy-r}A${r} ${r} 0 0 1 ${cx} ${cy+r}A${tr} ${r} 0 0 ${sw} ${cx} ${cy-r}`
+      var sw3 = gib ? 1 : 0
+      shadowPath = 'M'+cx+' '+(cy-r)+'A'+r+' '+r+' 0 0 1 '+cx+' '+(cy+r)+'A'+tr+' '+r+' 0 0 '+sw3+' '+cx+' '+(cy-r)
     }
   }
 
-  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <radialGradient id="moonGrad" cx="35%" cy="35%">
-        <stop offset="0%" stop-color="#fffbe6"/>
-        <stop offset="50%" stop-color="#f5e6b8"/>
-        <stop offset="100%" stop-color="#d4a76a"/>
-      </radialGradient>
-      <clipPath id="moonClipW"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath>
-    </defs>
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="url(#moonGrad)"/>
-    ${shadowPath ? `<path d="${shadowPath}" fill="#081626" opacity=".92" clip-path="url(#moonClipW)"/>` : ''}
-  </svg>`
+  el.innerHTML = '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'" xmlns="http://www.w3.org/2000/svg">'
+    + '<defs><radialGradient id="moonGrad" cx="35%" cy="35%"><stop offset="0%" stop-color="#fffbe6"/><stop offset="50%" stop-color="#f5e6b8"/><stop offset="100%" stop-color="#d4a76a"/></radialGradient>'
+    + '<clipPath id="moonClipW"><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'"/></clipPath></defs>'
+    + '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="url(#moonGrad)"/>'
+    + (shadowPath ? '<path d="'+shadowPath+'" fill="#081626" opacity=".92" clip-path="url(#moonClipW)"/>' : '')
+    + '</svg>'
 })()
+} catch(e) { console.error('Moon error:', e) }
 
 // ─── PRELOADER ───
 window.addEventListener('load', () => {
