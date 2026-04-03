@@ -107,7 +107,7 @@ section{position:relative;z-index:2;padding:100px 24px}
 .feat-card:hover{transform:translateY(-4px);border-color:rgba(13,148,136,.15)}
 .feat-card::before{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:var(--teal);opacity:0;filter:blur(80px);transition:opacity .4s}
 .feat-card:hover::before{opacity:.06}
-.feat-icon{font-size:36px;margin-bottom:16px;display:block}
+.feat-icon{margin-bottom:16px;display:block;line-height:0}
 .feat-card h3{font-family:var(--fD);font-size:1.25rem;margin-bottom:10px;font-weight:600}
 .feat-card p{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7}
 
@@ -166,6 +166,27 @@ footer a:hover{color:var(--tL)}
 </style>
 </head>
 <body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+<defs>
+  <linearGradient id="gFort" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+  <linearGradient id="gMap" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient>
+  <linearGradient id="gTarget" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EF4444"/><stop offset="100%" stop-color="#F97316"/></linearGradient>
+  <linearGradient id="gPeople" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#EC4899"/></linearGradient>
+  <linearGradient id="gStay" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D4A76A"/><stop offset="100%" stop-color="#E8C99B"/></linearGradient>
+  <linearGradient id="gHeart" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#34D399"/></linearGradient>
+  <linearGradient id="gTurtle" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#2DD4BF"/></linearGradient>
+  <linearGradient id="gMtn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#64748B"/><stop offset="100%" stop-color="#94A3B8"/></linearGradient>
+  <linearGradient id="gSunset" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F97316"/><stop offset="100%" stop-color="#FBBF24"/></linearGradient>
+  <linearGradient id="gMosque" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8C99B"/><stop offset="100%" stop-color="#D4A76A"/></linearGradient>
+  <linearGradient id="gPalm" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#059669"/><stop offset="100%" stop-color="#34D399"/></linearGradient>
+  <linearGradient id="gDesert" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient>
+  <linearGradient id="gStar" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient>
+  <linearGradient id="gFish" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0284C7"/><stop offset="100%" stop-color="#38BDF8"/></linearGradient>
+  <linearGradient id="gPeak" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366F1"/><stop offset="100%" stop-color="#A78BFA"/></linearGradient>
+  <linearGradient id="gWave" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0D9488"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient>
+  <linearGradient id="gScope" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#F472B6"/></linearGradient>
+</defs>
+</svg>
 
 <!-- Preloader -->
 <div id="pre">
@@ -260,32 +281,32 @@ footer a:hover{color:var(--tL)}
     </div>
     <div class="features-grid">
       <div class="feat-card rv rv-d1">
-        <span class="feat-icon">🏰</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><rect x="5" y="18" width="32" height="19" rx="2" fill="url(#gFort)" opacity=".9"/><rect x="8" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="18" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="28" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="8" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="12" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="18" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="22" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="28" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="32" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><path d="M17 27h8v10h-8z" fill="#020810" opacity=".4" rx="1"/></svg></span>
         <h3>Discover Places</h3>
         <p>416 MHT-verified heritage sites. Forts, souqs, archaeological sites, natural wonders — all with GPS coordinates, photos, and local tips.</p>
       </div>
       <div class="feat-card rv rv-d2">
-        <span class="feat-icon">🗺️</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 6l-4 2v24l4-2 4 2V8l-4-2z" fill="url(#gMap)" opacity=".3"/><path d="M7 10l10-4v24l-10 4V10z" fill="url(#gMap)" opacity=".7"/><path d="M25 8l10 4v24l-10-4V8z" fill="url(#gMap)"/><circle cx="15" cy="20" r="3" fill="#020810" opacity=".2"/><circle cx="15" cy="20" r="1.5" fill="url(#gMap)"/><path d="M28 16l2 3 2-3" stroke="#020810" stroke-width="1.5" opacity=".3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <h3>Self-Guided Routes</h3>
         <p>Curated multi-stop journeys through Oman's most scenic regions. Follow the GPS, stop where you want, go at your own pace.</p>
       </div>
       <div class="feat-card rv rv-d3">
-        <span class="feat-icon">🎯</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="16" stroke="url(#gTarget)" stroke-width="2.5" opacity=".3"/><circle cx="21" cy="21" r="11" stroke="url(#gTarget)" stroke-width="2.5" opacity=".6"/><circle cx="21" cy="21" r="6" stroke="url(#gTarget)" stroke-width="2.5"/><circle cx="21" cy="21" r="2" fill="url(#gTarget)"/><path d="M21 3v4M21 35v4M3 21h4M35 21h4" stroke="url(#gTarget)" stroke-width="1.5" opacity=".4" stroke-linecap="round"/></svg></span>
         <h3>Bingo Challenges</h3>
         <p>Weekly photo challenges that turn exploration into a game. Visit real places, snap proof, earn XP. Camera-verified — no shortcuts.</p>
       </div>
       <div class="feat-card rv rv-d4">
-        <span class="feat-icon">👥</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="14" r="6" fill="url(#gPeople)"/><path d="M10 34c0-6.075 4.925-11 11-11s11 4.925 11 11" fill="url(#gPeople)" opacity=".6"/><circle cx="32" cy="16" r="4" fill="url(#gPeople)" opacity=".5"/><path d="M28 34c0-4.5 2.5-8.5 6-10.5" stroke="url(#gPeople)" stroke-width="2" opacity=".3" stroke-linecap="round"/><circle cx="10" cy="16" r="4" fill="url(#gPeople)" opacity=".5"/><path d="M14 34c0-4.5-2.5-8.5-6-10.5" stroke="url(#gPeople)" stroke-width="2" opacity=".3" stroke-linecap="round"/></svg></span>
         <h3>Community Feed</h3>
         <p>Share discoveries, read reviews, trade tips with fellow explorers. See what's trending in your governorate right now.</p>
       </div>
       <div class="feat-card rv rv-d5">
-        <span class="feat-icon">🏡</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M6 36V20l15-14 15 14v16H6z" fill="url(#gStay)" opacity=".8"/><path d="M6 20l15-14 15 14" stroke="url(#gStay)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="24" width="10" height="12" rx="1.5" fill="#020810" opacity=".3"/><circle cx="21" cy="30" r="1" fill="url(#gStay)"/><rect x="10" y="22" width="5" height="5" rx="1" fill="#020810" opacity=".2"/><rect x="27" y="22" width="5" height="5" rx="1" fill="#020810" opacity=".2"/></svg></span>
         <h3>Unique Stays</h3>
         <p>Book heritage properties, desert camps, and mountain lodges. Stay where the stories are — not in a chain hotel.</p>
       </div>
       <div class="feat-card rv rv-d5">
-        <span class="feat-icon">🤝</span>
+        <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 36s-14-8.5-14-18a9 9 0 0118 0 9 9 0 0118 0c0 9.5-14 18-14 18z" fill="url(#gHeart)" opacity=".15"/><path d="M21 32s-10-6.5-10-14a7 7 0 0114 0 7 7 0 0114 0c0 7.5-10 14-10 14z" fill="url(#gHeart)"/><path d="M16 16v6M16 22l2 2 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/></svg></span>
         <h3>Volunteering</h3>
         <p>Join conservation and community projects across Oman. Give back to the places that give you so much.</p>
       </div>
@@ -303,18 +324,18 @@ footer a:hover{color:var(--tL)}
       <div class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center">Every visit earns XP. Every photo completes a challenge. Watch your explorer rank climb from Fresh Visa to Honorary Omani.</div>
     </div>
     <div class="bingo-grid rv">
-      <div class="bingo-sq done"><span>🏰</span></div>
-      <div class="bingo-sq open"><span>🐢</span></div>
-      <div class="bingo-sq done"><span>⛰️</span></div>
-      <div class="bingo-sq open"><span>🌅</span></div>
-      <div class="bingo-sq open"><span>🕌</span></div>
-      <div class="bingo-sq done"><span>🌴</span></div>
-      <div class="bingo-sq done"><span>🏜️</span></div>
-      <div class="bingo-sq open"><span>⭐</span></div>
-      <div class="bingo-sq done"><span>🐟</span></div>
-      <div class="bingo-sq open"><span>🏔️</span></div>
-      <div class="bingo-sq open"><span>🌊</span></div>
-      <div class="bingo-sq done"><span>🔭</span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="12" width="20" height="12" rx="1.5" fill="url(#gFort)" opacity=".9"/><rect x="6" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="12" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="18" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="6" y="4" width="1.5" height="3" rx=".5" fill="url(#gFort)" opacity=".6"/><rect x="8.5" y="4" width="1.5" height="3" rx=".5" fill="url(#gFort)" opacity=".6"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="15" rx="8" ry="6" fill="url(#gTurtle)"/><circle cx="14" cy="15" r="5" fill="url(#gTurtle)" opacity=".7"/><path d="M10 13q2-3 4-3t4 3" stroke="#020810" stroke-width="1" opacity=".15"/><circle cx="8" cy="11" r="2.5" fill="url(#gTurtle)" opacity=".9"/><circle cx="8.5" cy="10.5" r=".8" fill="#020810" opacity=".4"/><ellipse cx="5" cy="18" rx="2.5" ry="1.5" fill="url(#gTurtle)" opacity=".6" transform="rotate(-20 5 18)"/><ellipse cx="23" cy="18" rx="2.5" ry="1.5" fill="url(#gTurtle)" opacity=".6" transform="rotate(20 23 18)"/><ellipse cx="7" cy="21" rx="2" ry="1.2" fill="url(#gTurtle)" opacity=".5" transform="rotate(-10 7 21)"/><ellipse cx="21" cy="21" rx="2" ry="1.2" fill="url(#gTurtle)" opacity=".5" transform="rotate(10 21 21)"/></svg></span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M2 24l10-16 4 5 3-3 7 14H2z" fill="url(#gMtn)"/><path d="M2 24l10-16 4 5" fill="url(#gMtn)" opacity=".7"/><path d="M9 13l3-5 2 3" fill="#fff" opacity=".3"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="16" r="6" fill="url(#gSunset)"/><rect x="2" y="16" width="24" height="10" fill="#020810" opacity=".5"/><path d="M2 18h24" stroke="url(#gSunset)" stroke-width="1.5" opacity=".6"/><path d="M4 21h20" stroke="url(#gSunset)" stroke-width="1" opacity=".3"/><line x1="14" y1="4" x2="14" y2="8" stroke="url(#gSunset)" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="6" y1="10" x2="8.5" y2="12.5" stroke="url(#gSunset)" stroke-width="1.5" stroke-linecap="round" opacity=".5"/><line x1="22" y1="10" x2="19.5" y2="12.5" stroke="url(#gSunset)" stroke-width="1.5" stroke-linecap="round" opacity=".5"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="14" width="16" height="10" rx="1" fill="url(#gMosque)"/><path d="M14 4c-4 0-6 5-6 10h12c0-5-2-10-6-10z" fill="url(#gMosque)" opacity=".8"/><circle cx="14" cy="8" r="1.5" fill="url(#gMosque)"/><rect x="3" y="12" width="3" height="12" rx="1" fill="url(#gMosque)" opacity=".5"/><rect x="22" y="12" width="3" height="12" rx="1" fill="url(#gMosque)" opacity=".5"/><circle cx="4.5" cy="11" r="1.5" fill="url(#gMosque)" opacity=".5"/><circle cx="23.5" cy="11" r="1.5" fill="url(#gMosque)" opacity=".5"/></svg></span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="13" y="14" width="2" height="12" rx="1" fill="#8B6914" opacity=".7"/><path d="M14 6c-6 0-10 4-10 7 3-2 7-3 10-2" fill="url(#gPalm)" opacity=".8"/><path d="M14 6c6 0 10 4 10 7-3-2-7-3-10-2" fill="url(#gPalm)"/><path d="M14 4c-3 1-5 5-4 9" stroke="url(#gPalm)" stroke-width="1.5" opacity=".6" stroke-linecap="round"/><path d="M14 4c3 1 5 5 4 9" stroke="url(#gPalm)" stroke-width="1.5" opacity=".6" stroke-linecap="round"/></svg></span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M0 20q7-6 14-2t14-4v8H0z" fill="url(#gDesert)"/><path d="M0 22q7-4 14 0t14-2v6H0z" fill="url(#gDesert)" opacity=".6"/><circle cx="22" cy="8" r="4" fill="url(#gSunset)" opacity=".7"/><path d="M8 14v-4M8 10l-1.5-2M8 10l1.5-2M8 11l-2-1M8 11l2-1" stroke="url(#gPalm)" stroke-width="1" stroke-linecap="round" opacity=".5"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3l3.5 7.5 8 1-6 5.5 1.5 8L14 21l-7 4 1.5-8-6-5.5 8-1z" fill="url(#gStar)"/><path d="M14 7l2 4.5 5 .6-3.5 3.2 1 4.7L14 17.5l-4.5 2.5 1-4.7L7 12.1l5-.6z" fill="url(#gStar)" opacity=".5"/></svg></span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14c0-5 5-9 12-9-2 3-3 6-3 9s1 6 3 9c-7 0-12-4-12-9z" fill="url(#gFish)"/><path d="M3 14l4-4v8l-4-4z" fill="url(#gFish)" opacity=".7"/><circle cx="20" cy="12" r="1.5" fill="#020810" opacity=".4"/><circle cx="20.3" cy="11.7" r=".6" fill="#fff" opacity=".6"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L2 25h24L14 3z" fill="url(#gPeak)"/><path d="M14 3l-6 11 3 2 3-4 3 4 3-2-6-11z" fill="url(#gPeak)" opacity=".6"/><path d="M10 11l4-6 4 6" fill="#fff" opacity=".25"/></svg></span></div>
+      <div class="bingo-sq open"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M2 14q3-4 6 0t6 0 6 0 6 0" stroke="url(#gWave)" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M2 20q3-4 6 0t6 0 6 0 6 0" stroke="url(#gWave)" stroke-width="2" stroke-linecap="round" fill="none" opacity=".5"/><path d="M2 8q3-4 6 0t6 0 6 0 6 0" stroke="url(#gWave)" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".3"/></svg></span></div>
+      <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="12" y="16" width="4" height="10" rx="1" fill="url(#gScope)" opacity=".6"/><rect x="8" y="24" width="12" height="2" rx="1" fill="url(#gScope)" opacity=".4"/><circle cx="14" cy="10" r="7" stroke="url(#gScope)" stroke-width="2.5" fill="none"/><circle cx="14" cy="10" r="4" stroke="url(#gScope)" stroke-width="1.5" fill="none" opacity=".4"/><line x1="14" y1="3" x2="14" y2="5" stroke="url(#gScope)" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><circle cx="14" cy="10" r="1" fill="url(#gScope)" opacity=".8"/></svg></span></div>
     </div>
   </div>
 </section>
