@@ -51,11 +51,11 @@ a{color:var(--tL);text-decoration:none}
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to bottom,transparent,var(--nvy));z-index:3;pointer-events:none}
 
 /* Moon */
-.moon{position:absolute;top:6%;right:12%;z-index:1}
-.moon-body{width:80px;height:80px;position:relative;filter:drop-shadow(0 0 60px rgba(212,167,106,.3)) drop-shadow(0 0 120px rgba(212,167,106,.1))}
-.moon-ring{position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(212,167,106,.08);animation:moonRing 8s ease-in-out infinite}
-.moon-ring2{position:absolute;inset:-45px;border-radius:50%;border:1px solid rgba(212,167,106,.04);animation:moonRing 12s ease-in-out infinite reverse}
-.moon-glow{position:absolute;inset:-80px;border-radius:50%;background:radial-gradient(circle,rgba(212,167,106,.06),transparent 70%)}
+.moon{position:absolute;top:3%;right:8%;z-index:1}
+.moon-body{width:140px;height:140px;position:relative;filter:drop-shadow(0 0 80px rgba(212,167,106,.35)) drop-shadow(0 0 140px rgba(212,167,106,.12))}
+.moon-ring{position:absolute;inset:-30px;border-radius:50%;border:1px solid rgba(212,167,106,.08);animation:moonRing 8s ease-in-out infinite}
+.moon-ring2{position:absolute;inset:-65px;border-radius:50%;border:1px solid rgba(212,167,106,.04);animation:moonRing 12s ease-in-out infinite reverse}
+.moon-glow{position:absolute;inset:-100px;border-radius:50%;background:radial-gradient(circle,rgba(212,167,106,.06),transparent 70%)}
 @keyframes moonRing{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.1);opacity:1}}
 
 /* Ocean */
@@ -150,9 +150,9 @@ footer a:hover{color:var(--tL)}
 @media(max-width:768px){
   .stats{grid-template-columns:repeat(2,1fr)}
   .features-grid{grid-template-columns:1fr}
-  .moon{top:4%;right:6%}
-  .moon-body{width:50px;height:50px}
-  .moon-ring{inset:-12px}.moon-ring2{inset:-28px}.moon-glow{inset:-50px}
+  .moon{top:3%;right:5%}
+  .moon-body{width:70px;height:70px}
+  .moon-ring{inset:-15px}.moon-ring2{inset:-35px}.moon-glow{inset:-60px}
   .ctas{flex-direction:column;align-items:center}
   .btn-p,.btn-g{width:100%;max-width:280px;justify-content:center}
   section{padding:70px 20px}
@@ -391,14 +391,14 @@ footer a:hover{color:var(--tL)}
 <footer>
   <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
-    <a href="mailto:hello@tajarib.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#4a222f2626250a3e2b202b382328642b3a3a">Contact</a>
   </div>
   <p>Tajarib · تجارب · Sultanate of Oman</p>
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.12)">Heritage data courtesy of the Ministry of Heritage & Tourism</p>
 </footer>
 
 <!-- ═══ SCRIPTS ═══ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── REAL MOON PHASE ───
 try {
 ;(function renderMoon() {
@@ -590,14 +590,4 @@ document.querySelectorAll("a[href^='#']").forEach(a => {
   })
 })
 
-// ─── MAIN LOOP ───
-function frame() {
-  updateScroll()
-  drawStars()
-  drawGlow()
-  requestAnimationFrame(frame)
-}
-frame()
-</script>
-</body>
-</html>
+// ─── M
