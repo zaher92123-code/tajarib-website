@@ -166,10 +166,13 @@ footer a:hover{color:var(--tL)}
 
 
 /* ══ LANGUAGE TOGGLE ══ */
-.lang-toggle{position:fixed;top:20px;left:20px;z-index:200;display:flex;background:rgba(6,14,26,.7);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;backdrop-filter:blur(16px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.lang-btn{padding:10px 20px;font-size:13px;font-weight:600;border:none;background:none;color:rgba(255,255,255,.35);cursor:pointer;transition:all .3s;font-family:var(--fB);letter-spacing:.02em}
-.lang-btn.active{background:linear-gradient(135deg,var(--teal),var(--tD));color:#fff}
-.lang-btn:hover:not(.active){color:rgba(255,255,255,.6)}
+.lang-toggle{position:fixed;top:24px;left:24px;z-index:200;display:flex;align-items:center;gap:0;padding:3px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:20px;backdrop-filter:blur(20px);transition:border-color .4s}
+.lang-toggle:hover{border-color:rgba(13,148,136,.15)}
+.lang-btn{position:relative;padding:7px 16px;font-size:12px;font-weight:500;border:none;background:none;color:rgba(255,255,255,.25);cursor:pointer;transition:all .4s;font-family:var(--fB);letter-spacing:.03em;border-radius:17px;z-index:1}
+.lang-btn.active{color:#fff;text-shadow:0 1px 8px rgba(13,148,136,.4)}
+.lang-btn:hover:not(.active){color:rgba(255,255,255,.5)}
+.lang-pill{position:absolute;top:3px;left:3px;height:calc(100% - 6px);width:calc(50% - 3px);background:rgba(13,148,136,.15);border:1px solid rgba(13,148,136,.2);border-radius:17px;transition:transform .4s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.lang-toggle.ar-active .lang-pill{transform:translateX(100%)}
 
 /* Transition wrapper */
 .page-content{transition:opacity .4s ease,transform .4s ease}
@@ -219,7 +222,8 @@ footer a:hover{color:var(--tL)}
   <div class="pr-bar"><div class="pr-fill"></div></div>
   <div class="pr-txt">Loading experience</div>
 </div>
-<div class="lang-toggle">
+<div class="lang-toggle" id="langToggle">
+  <div class="lang-pill"></div>
   <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
   <button class="lang-btn" id="btn-ar" onclick="switchLang('ar')">عربي</button>
 </div>
@@ -735,6 +739,7 @@ function switchLang(lang) {
     
     // Toggle buttons
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('langToggle').classList.toggle('ar-active', lang === 'ar');
     document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
     
     // Fade in
@@ -758,6 +763,7 @@ try {
     document.documentElement.lang = 'ar';
     document.getElementById('btn-en').classList.remove('active');
     document.getElementById('btn-ar').classList.add('active');
+    document.getElementById('langToggle').classList.add('ar-active');
   }
 } catch(e) {}
 
