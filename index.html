@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#FDF6EC" />
+  <meta name="description" content="Tend — Never let another friendship fade." />
+  <title>Tend</title>
+  <style>
+    /* Prevent overscroll bounce on iOS */
+    html, body {
+      overscroll-behavior: none;
+      -webkit-overflow-scrolling: touch;
+      background: #FDF6EC;
+      margin: 0;
+      padding: 0;
+    }
+    /* Prevent text selection on UI elements */
+    button, [role="button"] {
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Safe area padding for the app container */
+    #root {
+      padding-top: env(safe-area-inset-top);
+      min-height: 100vh;
+      background: #FDF6EC;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
