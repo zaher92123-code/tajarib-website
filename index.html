@@ -164,17 +164,29 @@ footer a:hover{color:var(--tL)}
   .bingo-grid{grid-template-columns:repeat(3,1fr)}
 }
 
+
 /* ══ LANGUAGE TOGGLE ══ */
-.lang-toggle{position:fixed;top:20px;left:20px;z-index:200;display:flex;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;overflow:hidden;backdrop-filter:blur(12px)}
-.lang-btn{padding:8px 16px;font-size:13px;font-weight:600;border:none;background:none;color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;font-family:var(--fB)}
-.lang-btn.active{background:var(--teal);color:#fff}
-[dir=rtl] .hero .tagline,[dir=rtl] .section-sub,[dir=rtl] .feat-card p,[dir=rtl] .footer-links{direction:rtl;text-align:right}
-[dir=rtl] .hero{text-align:center}
-[dir=rtl] .section-title,[dir=rtl] .section-label{text-align:right}
-[dir=rtl] .feat-card{text-align:right}
-[dir=rtl] .bingo-section .section-title,[dir=rtl] .bingo-section .section-sub{text-align:center}
-[dir=rtl] .cta-final{text-align:center}
-[dir=rtl] .levels-track{direction:ltr}
+.lang-toggle{position:fixed;top:20px;right:20px;z-index:200;display:flex;background:rgba(6,14,26,.7);border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;backdrop-filter:blur(16px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.lang-btn{padding:10px 20px;font-size:13px;font-weight:600;border:none;background:none;color:rgba(255,255,255,.35);cursor:pointer;transition:all .3s;font-family:var(--fB);letter-spacing:.02em}
+.lang-btn.active{background:linear-gradient(135deg,var(--teal),var(--tD));color:#fff}
+.lang-btn:hover:not(.active){color:rgba(255,255,255,.6)}
+
+/* Transition wrapper */
+.page-content{transition:opacity .4s ease,transform .4s ease}
+.page-content.switching{opacity:0;transform:translateY(8px)}
+
+/* RTL adjustments */
+.ar-mode .section-label,.ar-mode .section-title,.ar-mode .section-sub,.ar-mode .feat-card{text-align:right;direction:rtl}
+.ar-mode .feat-card p{direction:rtl}
+.ar-mode .hero .tagline{direction:rtl}
+.ar-mode .bingo-section .section-title,.ar-mode .bingo-section .section-sub{text-align:center}
+.ar-mode .cta-final,.ar-mode .cta-final .sub{text-align:center;direction:rtl}
+.ar-mode .hero{text-align:center}
+.ar-mode .features-grid{direction:rtl}
+.ar-mode .footer-links{direction:rtl}
+.ar-mode .levels-track{direction:ltr}
+.ar-mode .stats{direction:rtl}
+.ar-mode .stat-label{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:11px}
 </style>
 </head>
 <body>
@@ -202,15 +214,14 @@ footer a:hover{color:var(--tL)}
 
 <!-- Preloader -->
 
-<div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
-  <button class="lang-btn" onclick="setLang('ar')" id="btn-ar">عربي</button>
-</div>
-
 <div id="pre">
   <img src="https://igriewkmnybvlclokdzz.supabase.co/storage/v1/object/public/photos/brand/tajarib_app_icon_1024.png" alt="Tajarib">
   <div class="pr-bar"><div class="pr-fill"></div></div>
   <div class="pr-txt">Loading experience</div>
+</div>
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+  <button class="lang-btn" id="btn-ar" onclick="switchLang('ar')">عربي</button>
 </div>
 
 <!-- Canvases -->
@@ -218,6 +229,7 @@ footer a:hover{color:var(--tL)}
 <canvas id="glow"></canvas>
 <div id="scrollbar"><div id="scrollfill"></div></div>
 
+<div class="page-content" id="pageContent">
 <!-- ═══ HERO ═══ -->
 <header class="hero">
   <div class="moon">
@@ -251,7 +263,7 @@ footer a:hover{color:var(--tL)}
 
   <h1>Tajarib</h1>
   <div class="ar">تجارب</div>
-  <p class="tagline"><em data-en="400+ heritage sites.</em> GPS-guided routes. Weekly challenges. A community of real explorers discovering Oman." data-ar="٤٠٠+ موقع تراثي.</em> مسارات بالـGPS. تحديات أسبوعية. مجتمع مستكشفين حقيقيين يكتشفون عُمان.">400+ heritage sites.</em> GPS-guided routes. Weekly challenges. A community of real explorers discovering Oman.</p>
+  <p class="tagline" data-i18n="tagline"><em>400+ heritage sites.</em> GPS-guided routes. Weekly challenges. A community of real explorers discovering Oman.</p>
   <div class="ctas">
     <a href="#features" class="btn-p">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
@@ -270,19 +282,19 @@ footer a:hover{color:var(--tL)}
     <div class="stats rv">
       <div class="stat">
         <div class="stat-num" data-count="416">0</div>
-        <div class="stat-label" data-en="Heritage Sites" data-ar="موقع تراثي">Heritage Sites</div>
+        <div class="stat-label" data-i18n="stat1" data-i18n="stat1">Heritage Sites</div>
       </div>
       <div class="stat">
         <div class="stat-num" data-count="11">0</div>
-        <div class="stat-label" data-en="Governorates" data-ar="محافظة">Governorates</div>
+        <div class="stat-label" data-i18n="stat2" data-i18n="stat2">Governorates</div>
       </div>
       <div class="stat">
         <div class="stat-num" data-count="10">0</div>
-        <div class="stat-label" data-en="Explorer Levels" data-ar="مستوى استكشاف">Explorer Levels</div>
+        <div class="stat-label" data-i18n="stat3" data-i18n="stat3">Explorer Levels</div>
       </div>
       <div class="stat">
         <div class="stat-num" data-count="16">0</div>
-        <div class="stat-label" data-en="Badges to Earn" data-ar="شارة للحصول عليها">Badges to Earn</div>
+        <div class="stat-label" data-i18n="stat4" data-i18n="stat4">Badges to Earn</div>
       </div>
     </div>
   </div>
@@ -293,40 +305,40 @@ footer a:hover{color:var(--tL)}
 <section id="features">
   <div class="container">
     <div class="rv">
-      <div class="section-label" data-en="What You Get" data-ar="شنو تحصل">What You Get</div>
-      <div class="section-title" data-en="Every feature built for explorers" data-ar="كل ميزة مصممة للمستكشفين">Every feature built for explorers</div>
-      <div class="section-sub" data-en="Not another booking app. Tajarib is built for the curious — the ones who chase sunsets down wadis and find forts hidden behind mountains." data-ar="مو تطبيق حجوزات ثاني. تجارب مصمم للفضوليين — اللي يطاردون الغروب في الأودية ويلقون القلاع المخفية ورا الجبال.">Not another booking app. Tajarib is built for the curious — the ones who chase sunsets down wadis and find forts hidden behind mountains.</div>
+      <div class="section-label" data-i18n="feat_label" data-i18n="feat_label">What You Get</div>
+      <div class="section-title" data-i18n="feat_title" data-i18n="feat_title">Every feature built for explorers</div>
+      <div class="section-sub"><span data-i18n="feat_sub">Not another booking app. Tajarib is built for the curious</span><span style="display:none" data-i18n-end="feat_sub"> — the ones who chase sunsets down wadis and find forts hidden behind mountains.</div>
     </div>
     <div class="features-grid">
       <div class="feat-card rv rv-d1">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><rect x="5" y="18" width="32" height="19" rx="2" fill="url(#gFort)" opacity=".9"/><rect x="8" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="18" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="28" y="10" width="6" height="12" rx="1" fill="url(#gFort)"/><rect x="8" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="12" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="18" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="22" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="28" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><rect x="32" y="6" width="2" height="4" rx="1" fill="url(#gFort)" opacity=".7"/><path d="M17 27h8v10h-8z" fill="#020810" opacity=".4" rx="1"/></svg></span>
-        <h3 data-en="Discover Places" data-ar="اكتشف الأماكن">Discover Places</h3>
-        <p data-en="416 MHT-verified heritage sites. Forts, souqs, archaeological sites, natural wonders — all with GPS coordinates, photos, and local tips." data-ar="٤١٦ موقع تراثي معتمد من الوزارة. قلاع، أسواق، مواقع أثرية، عجائب طبيعية — كلها بإحداثيات GPS وصور ونصائح محلية.">416 MHT-verified heritage sites. Forts, souqs, archaeological sites, natural wonders — all with GPS coordinates, photos, and local tips.</p>
+        <h3 data-i18n="f1_title">Discover Places</h3>
+        <p data-i18n="f1_desc">416 MHT-verified heritage sites. Forts, souqs, archaeological sites, natural wonders — all with GPS coordinates, photos, and local tips.</p>
       </div>
       <div class="feat-card rv rv-d2">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 6l-4 2v24l4-2 4 2V8l-4-2z" fill="url(#gMap)" opacity=".3"/><path d="M7 10l10-4v24l-10 4V10z" fill="url(#gMap)" opacity=".7"/><path d="M25 8l10 4v24l-10-4V8z" fill="url(#gMap)"/><circle cx="15" cy="20" r="3" fill="#020810" opacity=".2"/><circle cx="15" cy="20" r="1.5" fill="url(#gMap)"/><path d="M28 16l2 3 2-3" stroke="#020810" stroke-width="1.5" opacity=".3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <h3 data-en="Self-Guided Routes" data-ar="مسارات ذاتية">Self-Guided Routes</h3>
-        <p data-en="Curated multi-stop journeys through Oman's most scenic regions. Follow the GPS, stop where you want, go at your own pace." data-ar="رحلات متعددة المحطات عبر أجمل مناطق عُمان. تابع الـGPS، وقف وين ما تبي، وامشي على كيفك.">Curated multi-stop journeys through Oman's most scenic regions. Follow the GPS, stop where you want, go at your own pace.</p>
+        <h3 data-i18n="f2_title">Self-Guided Routes</h3>
+        <p data-i18n="f2_desc">Curated multi-stop journeys through Oman's most scenic regions. Follow the GPS, stop where you want, go at your own pace.</p>
       </div>
       <div class="feat-card rv rv-d3">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="21" r="16" stroke="url(#gTarget)" stroke-width="2.5" opacity=".3"/><circle cx="21" cy="21" r="11" stroke="url(#gTarget)" stroke-width="2.5" opacity=".6"/><circle cx="21" cy="21" r="6" stroke="url(#gTarget)" stroke-width="2.5"/><circle cx="21" cy="21" r="2" fill="url(#gTarget)"/><path d="M21 3v4M21 35v4M3 21h4M35 21h4" stroke="url(#gTarget)" stroke-width="1.5" opacity=".4" stroke-linecap="round"/></svg></span>
-        <h3 data-en="Bingo Challenges" data-ar="تحديات بينغو">Bingo Challenges</h3>
-        <p data-en="Weekly photo challenges that turn exploration into a game. Visit real places, snap proof, earn XP. Camera-verified — no shortcuts." data-ar="تحديات تصوير أسبوعية تحول الاستكشاف للعبة. زُر أماكن حقيقية، صوّر، واكسب XP. التحقق بالكاميرا — ما في اختصارات.">Weekly photo challenges that turn exploration into a game. Visit real places, snap proof, earn XP. Camera-verified — no shortcuts.</p>
+        <h3 data-i18n="f3_title">Bingo Challenges</h3>
+        <p data-i18n="f3_desc">Weekly photo challenges that turn exploration into a game. Visit real places, snap proof, earn XP. Camera-verified — no shortcuts.</p>
       </div>
       <div class="feat-card rv rv-d4">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><circle cx="21" cy="14" r="6" fill="url(#gPeople)"/><path d="M10 34c0-6.075 4.925-11 11-11s11 4.925 11 11" fill="url(#gPeople)" opacity=".6"/><circle cx="32" cy="16" r="4" fill="url(#gPeople)" opacity=".5"/><path d="M28 34c0-4.5 2.5-8.5 6-10.5" stroke="url(#gPeople)" stroke-width="2" opacity=".3" stroke-linecap="round"/><circle cx="10" cy="16" r="4" fill="url(#gPeople)" opacity=".5"/><path d="M14 34c0-4.5-2.5-8.5-6-10.5" stroke="url(#gPeople)" stroke-width="2" opacity=".3" stroke-linecap="round"/></svg></span>
-        <h3 data-en="Community Feed" data-ar="مجتمع المستكشفين">Community Feed</h3>
-        <p data-en="Share discoveries, read reviews, trade tips with fellow explorers. See what's trending in your governorate right now." data-ar="شارك اكتشافاتك، اقرأ التقييمات، وتبادل النصائح مع المستكشفين. شوف شنو الترند في محافظتك الحين.">Share discoveries, read reviews, trade tips with fellow explorers. See what's trending in your governorate right now.</p>
+        <h3 data-i18n="f4_title">Community Feed</h3>
+        <p data-i18n="f4_desc">Share discoveries, read reviews, trade tips with fellow explorers. See what's trending in your governorate right now.</p>
       </div>
       <div class="feat-card rv rv-d5">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M6 36V20l15-14 15 14v16H6z" fill="url(#gStay)" opacity=".8"/><path d="M6 20l15-14 15 14" stroke="url(#gStay)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="16" y="24" width="10" height="12" rx="1.5" fill="#020810" opacity=".3"/><circle cx="21" cy="30" r="1" fill="url(#gStay)"/><rect x="10" y="22" width="5" height="5" rx="1" fill="#020810" opacity=".2"/><rect x="27" y="22" width="5" height="5" rx="1" fill="#020810" opacity=".2"/></svg></span>
-        <h3 data-en="Unique Stays" data-ar="إقامات مميزة">Unique Stays</h3>
-        <p data-en="Book heritage properties, desert camps, and mountain lodges. Stay where the stories are — not in a chain hotel." data-ar="احجز بيوت تراثية، مخيمات صحراوية، ونُزل جبلية. سكن وين القصص — مو في فندق عادي.">Book heritage properties, desert camps, and mountain lodges. Stay where the stories are — not in a chain hotel.</p>
+        <h3 data-i18n="f5_title">Unique Stays</h3>
+        <p data-i18n="f5_desc">Book heritage properties, desert camps, and mountain lodges. Stay where the stories are — not in a chain hotel.</p>
       </div>
       <div class="feat-card rv rv-d5">
         <span class="feat-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 36s-14-8.5-14-18a9 9 0 0118 0 9 9 0 0118 0c0 9.5-14 18-14 18z" fill="url(#gHeart)" opacity=".15"/><path d="M21 32s-10-6.5-10-14a7 7 0 0114 0 7 7 0 0114 0c0 7.5-10 14-10 14z" fill="url(#gHeart)"/><path d="M16 16v6M16 22l2 2 5-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/></svg></span>
-        <h3 data-en="Volunteering" data-ar="تطوع">Volunteering</h3>
-        <p data-en="Join conservation and community projects across Oman. Give back to the places that give you so much." data-ar="انضم لمشاريع حماية البيئة والمجتمع في عُمان. رد الجميل للأماكن اللي عطتك وايد.">Join conservation and community projects across Oman. Give back to the places that give you so much.</p>
+        <h3 data-i18n="f6_title">Volunteering</h3>
+        <p data-i18n="f6_desc">Join conservation and community projects across Oman. Give back to the places that give you so much.</p>
       </div>
     </div>
   </div>
@@ -337,9 +349,9 @@ footer a:hover{color:var(--tL)}
 <section class="bingo-section">
   <div class="container">
     <div class="rv">
-      <div class="section-label" data-en="Gamification" data-ar="نظام الألعاب">Gamification</div>
-      <div class="section-title" style="margin-left:auto;margin-right:auto" data-en="Explore. Photograph. Level up." data-ar="استكشف. صوّر. ارتقِ.">Explore. Photograph. Level up.</div>
-      <div class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Every visit earns XP. Every photo completes a challenge. Watch your explorer rank climb from Fresh Visa to Honorary Omani." data-ar="كل زيارة تكسبك XP. كل صورة تكمل تحدي. شاهد رتبتك ترتفع من فيزا جديدة إلى عُماني فخري.">Every visit earns XP. Every photo completes a challenge. Watch your explorer rank climb from Fresh Visa to Honorary Omani.</div>
+      <div class="section-label" data-i18n="bingo_label">Gamification</div>
+      <div class="section-title" style="margin-left:auto;margin-right:auto" data-i18n="bingo_title">Explore. Photograph. Level up.</div>
+      <div class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center" data-i18n="bingo_sub">Every visit earns XP. Every photo completes a challenge. Watch your explorer rank climb from Fresh Visa to Honorary Omani.</div>
     </div>
     <div class="bingo-grid rv">
       <div class="bingo-sq done"><span><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="12" width="20" height="12" rx="1.5" fill="url(#gFort)" opacity=".9"/><rect x="6" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="12" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="18" y="7" width="4" height="7" rx="1" fill="url(#gFort)"/><rect x="6" y="4" width="1.5" height="3" rx=".5" fill="url(#gFort)" opacity=".6"/><rect x="8.5" y="4" width="1.5" height="3" rx=".5" fill="url(#gFort)" opacity=".6"/></svg></span></div>
@@ -362,9 +374,9 @@ footer a:hover{color:var(--tL)}
 <section>
   <div class="container" style="text-align:center">
     <div class="rv">
-      <div class="section-label" data-en="Progression" data-ar="التقدم">Progression</div>
-      <div class="section-title" style="margin-left:auto;margin-right:auto" data-en="10 levels. One legend." data-ar="١٠ مستويات. أسطورة واحدة.">10 levels. One legend.</div>
-      <div class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center" data-en="Start as a Newcomer. Explore enough of Oman to become a Legend. Your profile tells the story of every place you've been." data-ar="ابدأ كـ جديد. استكشف عُمان لين تصير أسطورة. بروفايلك يحكي قصة كل مكان زرته.">Start as a Newcomer. Explore enough of Oman to become a Legend. Your profile tells the story of every place you've been.</div>
+      <div class="section-label" data-i18n="lvl_label">Progression</div>
+      <div class="section-title" style="margin-left:auto;margin-right:auto" data-i18n="lvl_title">10 levels. One legend.</div>
+      <div class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center" data-i18n="lvl_sub">Start as a Newcomer. Explore enough of Oman to become a Legend. Your profile tells the story of every place you've been.</div>
     </div>
     <div class="levels-track rv" style="justify-content:center;flex-wrap:wrap;gap:8px;margin-top:40px">
       <div class="lvl-node"><div class="lvl-dot" style="border-color:#6B7280;color:#6B7280">1</div><div class="lvl-name">Newcomer</div></div>
@@ -393,8 +405,8 @@ footer a:hover{color:var(--tL)}
 <!-- ═══ FINAL CTA ═══ -->
 <section class="cta-final" id="cta">
   <div class="container rv">
-    <h2 data-en="Your next adventure<br>starts here" data-ar="مغامرتك القادمة<br>تبدأ هنا">Your next adventure<br>starts here</h2>
-    <p class="sub" data-en="Tajarib is launching soon on the App Store. Built in Oman, for Oman — and soon, the GCC." data-ar="تجارب قريباً على الآب ستور. صُنع في عُمان، لعُمان — وقريباً، الخليج.">Tajarib is launching soon on the App Store. Built in Oman, for Oman — and soon, the GCC.</p>
+    <h2 data-i18n="cta_title">Your next adventure<br>starts here</h2>
+    <p class="sub" data-i18n="cta_sub">Tajarib is launching soon on the App Store. Built in Oman, for Oman — and soon, the GCC.</p>
     <div class="ctas" style="margin-top:32px">
       <a href="#" class="btn-p" style="font-size:17px;padding:18px 40px">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -408,13 +420,14 @@ footer a:hover{color:var(--tL)}
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-links">
-    <a href="privacy.html" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a>
-    <a href="mailto:hello@tajarib.app" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+    <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+    <a href="mailto:hello@tajarib.app" data-i18n="footer_contact">Contact</a>
   </div>
-  <p>Tajarib · تجارب · Sultanate of Oman</p>
+  <p data-i18n="footer_oman">Tajarib · تجارب · Sultanate of Oman</p>
   <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.12)">Heritage data courtesy of the Ministry of Heritage & Tourism</p>
 </footer>
 
+</div>
 <!-- ═══ SCRIPTS ═══ -->
 <script>
 // ─── REAL MOON PHASE ───
@@ -619,24 +632,133 @@ function frame() {
 frame()
 
 
-// ─── LANGUAGE TOGGLE ───
-function setLang(lang) {
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en')
-  document.getElementById('btn-ar').classList.toggle('active', lang === 'ar')
+
+// ─── LANGUAGE SYSTEM ───
+var TR = {
+  tagline: {
+    en: '<em>400+ heritage sites.</em> GPS-guided routes. Weekly challenges. A community of real explorers discovering Oman.',
+    ar: '<em>+٤٠٠ موقع تراثي.</em> مسارات بالـGPS. تحديات أسبوعية. مجتمع مستكشفين حقيقيين يكتشفون عُمان.'
+  },
+  explore_btn: { en: 'Explore Features', ar: 'اكتشف المميزات' },
+  coming_btn: { en: 'Coming Soon', ar: 'قريباً' },
+  stat1: { en: 'Heritage Sites', ar: 'موقع تراثي' },
+  stat2: { en: 'Governorates', ar: 'محافظة' },
+  stat3: { en: 'Explorer Levels', ar: 'مستوى استكشاف' },
+  stat4: { en: 'Badges to Earn', ar: 'شارة' },
+  feat_label: { en: 'What You Get', ar: 'شنو تحصل' },
+  feat_title: { en: 'Every feature built for explorers', ar: 'كل ميزة مصممة للمستكشفين' },
+  feat_sub: {
+    en: "Not another booking app. Tajarib is built for the curious \u2014 the ones who chase sunsets down wadis and find forts hidden behind mountains.",
+    ar: "مو تطبيق حجوزات ثاني. تجارب مصمم للفضوليين \u2014 اللي يطاردون الغروب في الأودية ويلقون القلاع المخفية ورا الجبال."
+  },
+  f1_title: { en: 'Discover Places', ar: 'اكتشف الأماكن' },
+  f1_desc: {
+    en: '416 MHT-verified heritage sites. Forts, souqs, archaeological sites, natural wonders \u2014 all with GPS coordinates, photos, and local tips.',
+    ar: '٤١٦ موقع تراثي معتمد من الوزارة. قلاع، أسواق، مواقع أثرية، عجائب طبيعية \u2014 كلها بإحداثيات GPS وصور ونصائح محلية.'
+  },
+  f2_title: { en: 'Self-Guided Routes', ar: 'مسارات ذاتية' },
+  f2_desc: {
+    en: "Curated multi-stop journeys through Oman\u2019s most scenic regions. Follow the GPS, stop where you want, go at your own pace.",
+    ar: "رحلات متعددة المحطات عبر أجمل مناطق عُمان. تابع الـGPS، وقف وين ما تبي، وامشي على كيفك."
+  },
+  f3_title: { en: 'Bingo Challenges', ar: 'تحديات بينغو' },
+  f3_desc: {
+    en: 'Weekly photo challenges that turn exploration into a game. Visit real places, snap proof, earn XP. Camera-verified \u2014 no shortcuts.',
+    ar: 'تحديات تصوير أسبوعية تحول الاستكشاف للعبة. زُر أماكن حقيقية، صوّر، واكسب XP. التحقق بالكاميرا \u2014 ما في اختصارات.'
+  },
+  f4_title: { en: 'Community Feed', ar: 'مجتمع المستكشفين' },
+  f4_desc: {
+    en: "Share discoveries, read reviews, trade tips with fellow explorers. See what\u2019s trending in your governorate right now.",
+    ar: "شارك اكتشافاتك، اقرأ التقييمات، وتبادل النصائح مع المستكشفين. شوف شنو الترند في محافظتك الحين."
+  },
+  f5_title: { en: 'Unique Stays', ar: 'إقامات مميزة' },
+  f5_desc: {
+    en: 'Book heritage properties, desert camps, and mountain lodges. Stay where the stories are \u2014 not in a chain hotel.',
+    ar: 'احجز بيوت تراثية، مخيمات صحراوية، ونُزل جبلية. سكن وين القصص \u2014 مو في فندق عادي.'
+  },
+  f6_title: { en: 'Volunteering', ar: 'تطوع' },
+  f6_desc: {
+    en: 'Join conservation and community projects across Oman. Give back to the places that give you so much.',
+    ar: 'انضم لمشاريع حماية البيئة والمجتمع في عُمان. رد الجميل للأماكن اللي عطتك وايد.'
+  },
+  bingo_label: { en: 'Gamification', ar: 'نظام الألعاب' },
+  bingo_title: { en: 'Explore. Photograph. Level up.', ar: 'استكشف. صوّر. ارتقِ.' },
+  bingo_sub: {
+    en: 'Every visit earns XP. Every photo completes a challenge. Watch your explorer rank climb from Fresh Visa to Honorary Omani.',
+    ar: 'كل زيارة تكسبك XP. كل صورة تكمل تحدي. شاهد رتبتك ترتفع من فيزا جديدة إلى عُماني فخري.'
+  },
+  lvl_label: { en: 'Progression', ar: 'التقدم' },
+  lvl_title: { en: '10 levels. One legend.', ar: '١٠ مستويات. أسطورة واحدة.' },
+  lvl_sub: {
+    en: "Start as a Newcomer. Explore enough of Oman to become a Legend. Your profile tells the story of every place you\u2019ve been.",
+    ar: "ابدأ كـ جديد. استكشف عُمان لين تصير أسطورة. بروفايلك يحكي قصة كل مكان زرته."
+  },
+  cta_title: { en: 'Your next adventure<br>starts here', ar: 'مغامرتك القادمة<br>تبدأ هنا' },
+  cta_sub: {
+    en: 'Tajarib is launching soon on the App Store. Built in Oman, for Oman \u2014 and soon, the GCC.',
+    ar: 'تجارب قريباً على الآب ستور. صُنع في عُمان، لعُمان \u2014 وقريباً، الخليج.'
+  },
+  cta_btn: { en: 'Coming to App Store', ar: 'قريباً على الآب ستور' },
+  footer_privacy: { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+  footer_contact: { en: 'Contact', ar: 'تواصل معنا' },
+  footer_oman: { en: 'Tajarib \u00B7 \u062A\u062C\u0627\u0631\u0628 \u00B7 Sultanate of Oman', ar: '\u062A\u062C\u0627\u0631\u0628 \u00B7 Tajarib \u00B7 سلطنة عُمان' },
+  footer_mht: { en: 'Heritage data courtesy of the Ministry of Heritage & Tourism', ar: 'البيانات التراثية بإذن من وزارة التراث والسياحة' }
+};
+
+var currentLang = 'en';
+
+function switchLang(lang) {
+  if (lang === currentLang) return;
+  var page = document.getElementById('pageContent');
   
-  document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
-    var val = el.getAttribute('data-' + lang)
-    if (val) el.innerHTML = val
-  })
+  // Fade out
+  page.classList.add('switching');
   
-  try { localStorage.setItem('tajarib-lang', lang) } catch(e) {}
+  setTimeout(function() {
+    // Apply translations
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (TR[key] && TR[key][lang]) {
+        el.innerHTML = TR[key][lang];
+      }
+    });
+    
+    // Toggle RTL
+    if (lang === 'ar') {
+      document.body.classList.add('ar-mode');
+      document.documentElement.lang = 'ar';
+    } else {
+      document.body.classList.remove('ar-mode');
+      document.documentElement.lang = 'en';
+    }
+    
+    // Toggle buttons
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+    
+    // Fade in
+    page.classList.remove('switching');
+    
+    try { localStorage.setItem('tajarib-lang', lang); } catch(e) {}
+  }, 400);
 }
 
 // Load saved language
 try {
-  var saved = localStorage.getItem('tajarib-lang')
-  if (saved === 'ar') setLang('ar')
+  var saved = localStorage.getItem('tajarib-lang');
+  if (saved === 'ar') {
+    // Apply without animation on load
+    currentLang = 'ar';
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (TR[key] && TR[key]['ar']) el.innerHTML = TR[key]['ar'];
+    });
+    document.body.classList.add('ar-mode');
+    document.documentElement.lang = 'ar';
+    document.getElementById('btn-en').classList.remove('active');
+    document.getElementById('btn-ar').classList.add('active');
+  }
 } catch(e) {}
 
 </script>
